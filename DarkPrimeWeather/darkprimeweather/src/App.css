@@ -27,7 +27,9 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  font-family: 'Abel', sans-serif;
+  font-family: 'Abel', sans-serif;  
+  animation-name: introduction;
+  animation-duration: 2s; 
 }
 
 .weather-detail{
