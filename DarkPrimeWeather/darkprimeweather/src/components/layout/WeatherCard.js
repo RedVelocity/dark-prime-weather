@@ -1,27 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 // import { Spring, config  } from 'react-spring/renderprops'
-import { Card } from 'primereact/card';
+// import { Card } from 'primereact/card';
 import WeatherSearch from './WeatherSearch';
 import WeatherDetail from './WeatherDetail';
 import { Message } from 'primereact/message';
-import { Offline } from "react-detect-offline";
+import { Offline } from 'react-detect-offline';
 // import {Panel} from 'primereact/panel';
 
-class WeatherCard extends Component {
-  render() {
+function WeatherCard ( {weatherState, performSearch, toggleLoading} ) {
     return (
-      <Card title="Weather" className="weather-card">
+      <div className="weather-card">
       <Offline><Message severity="warn" text="Currently Offline"></Message></Offline>
         <br />
-        <WeatherSearch performSearch={this.props.performSearch} toggleLoading={this.props.toggleLoading} className="halfheight" />
+        <WeatherSearch performSearch={performSearch} toggleLoading={toggleLoading} className="halfheight" />
         <br />
-          {(this.props.weatherState.isLoaded) ? 
-            <WeatherDetail weatherState={this.props.weatherState} className="halfheight"/> : <div className="halfheight"></div>}  
-      </Card>
+          {(weatherState.isLoaded) ? 
+            <WeatherDetail weatherState={weatherState} className="halfheight"/> :null}
+      </div>
     )
   }
-}
 
 // PropTypes
 WeatherCard.propTypes = {

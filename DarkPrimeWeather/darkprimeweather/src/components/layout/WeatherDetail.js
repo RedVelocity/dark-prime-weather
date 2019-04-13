@@ -4,7 +4,7 @@ import ReactAnimatedWeather from 'react-animated-weather';
 // import { Transition, animated } from 'react-spring/renderprops';
 // import {  CSSTransition, TransitionGroup  } from 'react-transition-group';
 // import './../../App.css';
-function WeatherDetail(props) {
+function WeatherDetail({weatherState}) {
 
  const defaults = {
     color: 'cadetblue',
@@ -13,8 +13,8 @@ function WeatherDetail(props) {
   };
   
 
-  const {temperature, icon, summary} = props.weatherState.weather.currently;
-  const isLoading = props.weatherState.isLoading;
+  const {temperature, icon, summary} = weatherState.weather.currently;
+  const isLoading = weatherState.isLoading;
   // const detail = () => { return (
   //   <div style={{ display : 'flex', flexDirection: 'column' }}>
   //         {(!this.props.weatherState.isLoading) ?
@@ -37,7 +37,7 @@ function WeatherDetail(props) {
     return (    
       <React.Fragment>
         {(!isLoading) ?
-        <div style={{ display : 'flex' }}>
+        <div style={{ display : 'flex', justifyItems: 'start' }}>
           <h3 style={{flex: '3'}} >{Math.round(temperature)}°C </h3>
           <h3 style={{flex: '3'}} >{summary}</h3>
           <div 

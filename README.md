@@ -8,3 +8,5 @@ If you run Git: Checkout to, you will see a drop-down list containing all of the
 Git checkout
 
 The Git: Create Branch command lets you quickly create a new branch. Just provide the name of your new branch and VS Code will create the branch and switch to it.
+
+cd DarkPrimeWeather/darkprimeweather

@@ -14,7 +14,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; 
   position: relative;
   font-family: 'Abel', sans-serif;
   animation-name: introduction;
@@ -22,14 +22,26 @@
 }
 
 .weather-card {
-  height: 35%;
-  width: 35%;
-  display: flex;
-  flex-direction: column;
+  min-height: 30vh;
+  width: 35wh;
+  /* display: flex;
+  flex-direction: column; */
+  /* align-items: center;
+  justify-content: center;  */
   position: relative;
   font-family: 'Abel', sans-serif;  
-  animation-name: introduction;
-  animation-duration: 2s; 
+  padding: 30px;
+  /* animation-name: introduction;
+  animation-duration: 2s;  */
+}
+
+.map-card {
+  height: 50%;
+  width: 50%;
+  /* display: flex;
+  flex-direction: column; */
+  /* position: relative; */
+  font-family: 'Abel', sans-serif;  
 }
 
 .weather-detail{
@@ -40,8 +52,9 @@
 .Container{
   text-align: center;
   height: 100vh;
-  height: 100vh;
+  width: 100vw;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));

@@ -4,7 +4,7 @@ import 'primereact/resources/primereact.min.css';
 import 'primereact/resources/themes/nova-colored/theme.css';
 import 'primeicons/primeicons.css';
 import './App.css';
-import WeatherCard from './components/layout/WeatherCard';
+import WeatherTabs from './components/layout/WeatherTabs';
 // import {Messages} from 'primereact/messages';
 
 class App extends Component {
@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <div className="Container">
           {/* {console.log(this.state)}          */}
-          <WeatherCard weatherState={this.state} performSearch={this.performSearch} toggleLoading={this.toggleLoading} />
+          <WeatherTabs weatherState={this.state} performSearch={this.performSearch} toggleLoading={this.toggleLoading} />
       </div>
     );
   }
