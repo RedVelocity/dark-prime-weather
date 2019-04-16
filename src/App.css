@@ -29,7 +29,7 @@
 }
 
 .weather-card {
-  min-height: 25vh;
+  min-height: 30vh;
   width: 35wh;
   /* display: flex;
   flex-direction: column; */

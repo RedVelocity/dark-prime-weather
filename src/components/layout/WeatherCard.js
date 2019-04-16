@@ -15,6 +15,7 @@ function WeatherCard ( {weatherState, performSearch, toggleLoading} ) {
         <br />
         <WeatherSearch performSearch={performSearch} toggleLoading={toggleLoading} className="halfheight" />
         <br />
+        <br />
           {(weatherState.isLoaded) ? 
             <WeatherDetail weatherState={weatherState} className="halfheight"/> :null}
       </div>
