@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+body {  
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));
+  background-image: -webkit-linear-gradient(top, #311847, #3EB9E6);
+  background-image: -moz-linear-gradient(top, #311847, #3EB9E6);
+  background-image: linear-gradient(to bottom, #311847, #3EB9E6);
+}
+
 #root {
   padding: 0;
   margin: 0;  
@@ -29,7 +36,7 @@
 }
 
 .weather-card {
-  min-height: 30vh;
+  min-height: 28vh;
   width: 35wh;
   /* display: flex;
   flex-direction: column; */
@@ -64,10 +71,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));
+  /* background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));
   background-image: -webkit-linear-gradient(top, #311847, #3EB9E6);
   background-image: -moz-linear-gradient(top, #311847, #3EB9E6);
-  background-image: linear-gradient(to bottom, #311847, #3EB9E6);
+  background-image: linear-gradient(to bottom, #311847, #3EB9E6); */
 }
 
 .App-header {
