@@ -21,7 +21,7 @@ class App extends Component {
   performSearch = (lat, lon) => {
     // console.log(lat, lon, this.state)
     const exclude = '[minutely,hourly,daily,flags]';
-    const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/9f911aad47a388aa161a81af34f48144/${lat},${lon}?units=ca&exclude=${exclude}`;
+    const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_KEY}/${lat},${lon}?units=ca&exclude=${exclude}`;
     axios.get(api)
       .then(res => {
         console.log(res.data);

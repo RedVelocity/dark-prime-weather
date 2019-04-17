@@ -27,19 +27,19 @@ export default class MapCard extends Component {
       latitude= {position[0]}
       longitude= {position[1]}
       zoom={10}
-      width={600}
-      height={350}
+      width="40vw"
+      height="40vh"
       interactive={false}
       dragPan={false}
       onViewportChange={(viewport) => this.setState({viewport})}
       mapStyle="mapbox://styles/mapbox/streets-v11"
-      mapboxApiAccessToken="pk.eyJ1IjoicmVkdmVsb2NpdHkiLCJhIjoiY2p1bDVzMmwzMXg5YjRkb2FjNXIwOWFnbCJ9.99QKd-qk4VJI4I8bj8rUWg"
+      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
     >
       <Marker 
         latitude= {position[0]}
         longitude= {position[1]}
         draggable= {false}
-        offsetTop= {-10}
+        offsetTop= {-25}
       >
         <img src="https://img.icons8.com/color/32/000000/marker.png" alt=""/>
       </Marker>

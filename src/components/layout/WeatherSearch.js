@@ -11,7 +11,7 @@ export default class WeatherSearch extends Component {
         latitude: '',
         longitude: '',
         place:'Bengaluru, India',
-        apikey: '9028de0f542f447faf6ea23f3aa5cf56' 
+        apikey: process.env.REACT_APP_OPENCAGE_KEY
     };
 
     onSearch = (e) => {
