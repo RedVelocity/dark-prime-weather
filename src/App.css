@@ -23,8 +23,8 @@ body {
 }
 
 .weather-box {
-  min-height: 28vh;
-  width: 35wh;
+  min-height: 30vh;
+  min-width: 50wh;
   /* display: flex;
   flex-direction: column; */
   align-items: center;
@@ -32,7 +32,7 @@ body {
   position: relative;
   font-family: 'Abel', sans-serif;
   animation-name: introduction;
-  animation-duration: 2s; 
+  animation-duration: 1s; 
 }
 
 .weather-card {
@@ -56,11 +56,6 @@ body {
   flex-direction: column; */
   /* position: relative; */
   font-family: 'Abel', sans-serif;  
-}
-
-.weather-detail{
-  animation-name: appear;
-  animation-duration: 2s; 
 }
 
 .Container{
