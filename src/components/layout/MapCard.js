@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import ReactMapGL, { Marker } from 'react-map-gl';
-import Pin from './Pin'
 
 export default class MapCard extends Component {
 
@@ -40,8 +39,9 @@ export default class MapCard extends Component {
         latitude= {position[0]}
         longitude= {position[1]}
         draggable= {false}
+        offsetTop= {-10}
       >
-        <Pin size={20}/>
+        <img src="https://img.icons8.com/color/32/000000/marker.png" alt=""/>
       </Marker>
     </ReactMapGL>
   )
