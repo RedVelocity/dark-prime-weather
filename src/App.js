@@ -5,6 +5,7 @@ import 'primereact/resources/themes/nova-colored/theme.css';
 import 'primeicons/primeicons.css';
 import './App.css';
 import WeatherTabs from './components/layout/WeatherTabs';
+// import MapCard from './components/layout/MapCard';
 // import {Messages} from 'primereact/messages';
 
 class App extends Component {
@@ -18,7 +19,7 @@ class App extends Component {
   toggleLoading = () =>  this.setState({isLoading: !this.state.isLoading});
 
   performSearch = (lat, lon) => {
-    console.log(lat, lon, this.state)
+    // console.log(lat, lon, this.state)
     const exclude = '[minutely,hourly,daily,flags]';
     const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/9f911aad47a388aa161a81af34f48144/${lat},${lon}?units=ca&exclude=${exclude}`;
     axios.get(api)
@@ -32,7 +33,11 @@ class App extends Component {
     return (
       <div className="Container">
           {/* {console.log(this.state)}          */}
-          <WeatherTabs weatherState={this.state} performSearch={this.performSearch} toggleLoading={this.toggleLoading} />
+          <WeatherTabs 
+            weatherState={this.state} 
+            performSearch={this.performSearch} 
+            toggleLoading={this.toggleLoading} />
+          {/* <MapCard /> */}
       </div>
     );
   }
