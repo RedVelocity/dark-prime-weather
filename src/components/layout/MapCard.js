@@ -28,7 +28,7 @@ export default class MapCard extends Component {
       latitude= {position[0]}
       longitude= {position[1]}
       zoom={10}
-      width="70vw"
+      width="75vw"
       height="60vh"
       interactive={false}
       dragPan={false}
