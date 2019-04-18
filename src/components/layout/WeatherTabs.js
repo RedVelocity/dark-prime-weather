@@ -11,10 +11,7 @@ class WeatherTabs extends Component {
                 <WeatherCard weatherState={this.props.weatherState} performSearch={this.props.performSearch} toggleLoading={this.props.toggleLoading} />
             </TabPanel>
             <TabPanel header="Map" leftIcon="pi pi-map-marker">
-            
-          {/* {(this.props.weatherState.isLoaded) ?  */}
                 <MapCard weatherState={this.props.weatherState} />
-                {/* :null} */}
             </TabPanel>
         </TabView>
     )

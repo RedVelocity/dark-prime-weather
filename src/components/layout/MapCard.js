@@ -17,7 +17,7 @@ export default class MapCard extends Component {
     }
     
  render(){ 
-    let position = [this.state.latitude, this.state.longitude];
+    let position = [this.state.viewport.latitude, this.state.viewport.longitude];
     let { weather } = this.props.weatherState;
     if(this.props.weatherState.isLoaded) {
       position = [weather.latitude, weather.longitude];
