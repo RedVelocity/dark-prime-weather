@@ -8,14 +8,13 @@ import {Button} from 'primereact/button';
 
 export default class WeatherSearch extends Component {
     state = { 
-        latitude: '',
-        longitude: '',
-        place:'Bengaluru, India',
-        apikey: process.env.REACT_APP_OPENCAGE_KEY
+        latitude: 12.9791198,
+        longitude: 77.5912997,
+        place:'Bengaluru, India'
     };
 
     onSearch = (e) => {
-        opencage.geocode({q: this.state.place, key: this.state.apikey}).then(data => {
+        opencage.geocode({q: this.state.place, key: process.env.REACT_APP_OPENCAGE_KEY}).then(data => {
             // console.log(JSON.stringify(data));
             if (data.status.code === 200) {
               if (data.results.length > 0) {
@@ -23,9 +22,9 @@ export default class WeatherSearch extends Component {
                 // console.log(place.formatted);
                 this.setState({ latitude: place.geometry.lat, longitude: place.geometry.lng  });
                 // console.log('geocode',this.state, place.geometry);
+                this.props.toggleLoading();
                 this.props.performSearch(this.state.latitude, this.state.longitude);
                 // console.log(place.annotations.timezone.name);
-                this.props.toggleLoading();
               }
             } else if (data.status.code === 402) {
               console.log('hit free-trial daily limit');
@@ -40,27 +39,13 @@ export default class WeatherSearch extends Component {
           });
     }
 
+    componentDidMount() {
+      if(!this.props.isLoaded) {this.onSearch()};
+    }
+
     render() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center'}} >
-        {/* <span className="p-float-label">
-        <InputText 
-              //placeholder="Longitude" 
-              id="lat"
-              value={this.state.latitude} 
-              onChange={(e) => this.setState({latitude: e.target.value})}
-              style={{ flex: '3', padding: '5px' }} />
-              <label htmlFor="lat">Latitude</label>
-        </span>
-        <span className="p-float-label">
-        <InputText 
-              //placeholder="Longitude" 
-              id="lon"
-              value={this.state.longitude} 
-              onChange={(e) => this.setState({longitude: e.target.value})}
-              style={{ flex: '3', padding: '5px' }} />
-              <label htmlFor="lon">Longitude</label>
-        </span> */}
+        <div style={{ display: 'flex', justifyContent: 'center' }} >
         <span className="p-float-label"   >
         <InputText 
               //placeholder="Place" 
@@ -80,5 +65,6 @@ export default class WeatherSearch extends Component {
 
 WeatherSearch.propTypes = {
   performSearch: PropTypes.func.isRequired,
-  toggleLoading: PropTypes.func.isRequired
+  toggleLoading: PropTypes.func.isRequired,
+  isLoaded: PropTypes.bool.isRequired
 }

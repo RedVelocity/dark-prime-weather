@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import ReactMapGL, { Marker } from 'react-map-gl';
 
 export default class MapCard extends Component {
