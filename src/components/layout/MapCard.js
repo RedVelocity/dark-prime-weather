@@ -4,23 +4,24 @@ import ReactMapGL, { Marker } from 'react-map-gl';
 
 export default class MapCard extends Component {
 
-  // state = {
-  //   viewport: {
-  //     latitude: 12.9791198,
-  //     longitude: 77.5912997,
-  //     zoom: 10
-  //   }
-  // };
+  state = {
+    viewport: {
+      latitude: 12.9791198,
+      longitude: 77.5912997
+    }
+  };
 
-    // setPosition = (lat, lon) => {
-    //     this.setState({viewport: {latitude:lat, longitude:lon}});
-    //   }
+  setPosition = (lat, lon) => {
+    const viewport = {...this.state.viewport, longitude: lat, latitude: lon};
+    this.setState({viewport});
+    }
     
  render(){ 
-    let position = [12.9791198, 77.5912997];
+    let position = [this.state.latitude, this.state.longitude];
+    let { weather } = this.props.weatherState;
     if(this.props.weatherState.isLoaded) {
-      position = [this.props.weatherState.weather.latitude, this.props.weatherState.weather.longitude];
-      // this.setState({viewport: {latitude:position[0], longitude:position[1]}});
+      position = [weather.latitude, weather.longitude];
+      // this.setPosition(position[0], position[1]);
     } 
     return (
     <ReactMapGL
