@@ -28,8 +28,8 @@ export default class MapCard extends Component {
       latitude= {position[0]}
       longitude= {position[1]}
       zoom={10}
-      width="80vw"
-      height="80vh"
+      width="70vw"
+      height="60vh"
       interactive={false}
       dragPan={false}
       // onViewportChange={(viewport) => this.setState({viewport})}
