@@ -50,7 +50,7 @@ function WeatherDetail({weatherState}) {
             />
           </div>
         </div> 
-        : <div><h3>Loading...</h3></div>
+        : <div style={{ display : 'flex', justifyItems: 'start', textAlign: 'center' }}><h3>Loading...</h3></div>
         }
       </React.Fragment>
     )

@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 body {  
   background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));
   background-image: -webkit-linear-gradient(top, #311847, #3EB9E6);
@@ -14,12 +10,6 @@ body {
   margin: 0;  
   height: 100vh;
   width: 100vw;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
 }
 
 .weather-box {

@@ -31,8 +31,8 @@ export default class MapCard extends Component {
       height="250px"
       interactive={false}
       dragPan={false}
-      onViewportChange={(viewport) => this.setState({viewport})}
-      mapStyle="mapbox://styles/mapbox/streets-v11"
+      // onViewportChange={(viewport) => this.setState({viewport})}
+      mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
       mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
     >
       <Marker 
