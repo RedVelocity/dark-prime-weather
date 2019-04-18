@@ -17,6 +17,10 @@ class App extends Component {
   };
 
   toggleLoading = () =>  this.setState({isLoading: !this.state.isLoading});
+  setLatLon = (lat, lon) => {
+    this.setState({ ...this.state, weather:{...this.state.weather, latitude:lat, longitude:lon}} );
+    console.log('set lat long in app js', this.state);
+  }
 
   performSearch = (lat, lon) => {
     // console.log(lat, lon, this.state)
@@ -24,7 +28,7 @@ class App extends Component {
     const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_KEY}/${lat},${lon}?units=ca&exclude=${exclude}`;
     axios.get(api)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         return this.setState({ weather: res.data, isLoaded: true, isLoading: false })
       })
   }
@@ -36,7 +40,8 @@ class App extends Component {
           <WeatherTabs 
             weatherState={this.state} 
             performSearch={this.performSearch} 
-            toggleLoading={this.toggleLoading} />
+            toggleLoading={this.toggleLoading}
+            setLatLon={this.setLatLon} />
           {/* <MapCard /> */}
       </div>
     );

@@ -17,8 +17,8 @@ body {
   min-width: 50wh; */
   /* display: flex;
   flex-direction: column; */
-  align-items: center;
-  justify-content: center; 
+  /* align-items: center;
+  justify-content: center;  */
   position: relative;
   font-family: 'Abel', sans-serif;
   animation-name: introduction;
@@ -34,18 +34,8 @@ body {
   justify-content: center; 
   position: relative;
   font-family: 'Abel', sans-serif;  
-  padding: 30px;
   /* animation-name: introduction;
   animation-duration: 2s;  */
-}
-
-.map-card {
-  height: 50%;
-  width: 50%;
-  /* display: flex;
-  flex-direction: column; */
-  /* position: relative; */
-  font-family: 'Abel', sans-serif;  
 }
 
 .Container{

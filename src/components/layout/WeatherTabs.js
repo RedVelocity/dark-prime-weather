@@ -11,7 +11,7 @@ class WeatherTabs extends Component {
                 <WeatherCard weatherState={this.props.weatherState} performSearch={this.props.performSearch} toggleLoading={this.props.toggleLoading} />
             </TabPanel>
             <TabPanel header="Map" leftIcon="pi pi-map-marker">
-                <MapCard weatherState={this.props.weatherState} />
+                <MapCard weatherState={this.props.weatherState} setLatLon={this.props.setLatLon}/>
             </TabPanel>
         </TabView>
     )

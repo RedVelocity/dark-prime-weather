@@ -14,10 +14,6 @@ function WeatherCard ( {weatherState, performSearch, toggleLoading} ) {
       <Offline><Message severity="warn" text="Currently Offline"></Message></Offline>
         <br />
         <WeatherSearch performSearch={performSearch} toggleLoading={toggleLoading} isLoaded={weatherState.isLoaded} />
-        <br />
-        <br />
-        <br />
-        <br />
           {(weatherState.isLoaded) && 
             <WeatherDetail weatherState={weatherState} />}
       </div>
