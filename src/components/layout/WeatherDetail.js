@@ -37,7 +37,7 @@ function WeatherDetail({weatherState}) {
     return (    
       <React.Fragment>
         {(!isLoading) ?
-        <div style={{ display : 'flex', justifyItems: 'start', textAlign: 'center' }}>
+        <div style={{ display : 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', minWidth: '300px' }}>
           <h3 style={{flex: '3'}} >{Math.round(temperature)}°C </h3>
           <h3 style={{flex: '3'}} >{summary}</h3>
           <div 

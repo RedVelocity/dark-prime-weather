@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import * as opencage from 'opencage-api-client';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
-//import {Card} from 'primereact/card';
 import {InputText} from 'primereact/inputtext';
 import {Button} from 'primereact/button';
 
@@ -45,17 +43,19 @@ export default class WeatherSearch extends Component {
 
     render() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }} >
-        <span className="p-float-label"   >
+        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '500px' }} >
+        {/* <span className="p-float-label"   > */}
         <InputText 
-              //placeholder="Place" 
+              style={{flex: '3'}}
+              placeholder="Enter Place Name" 
               id="place"
               value={this.state.place} 
               onChange={(e) => this.setState({place: e.target.value})}    
               />
-              <label htmlFor="place">Enter Place Name</label>
-        </span>
+              {/* <label htmlFor="place">Enter Place Name</label>
+        </span> */}
         <Button 
+              style={{flex: '2'}}
               label="Get Weather" 
               onClick={this.onSearch} />
         </div>
