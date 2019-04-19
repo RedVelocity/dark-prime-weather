@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactMapGL, { Marker, NavigationControl } from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 import PropTypes from 'prop-types';
 // import marker from '../../assets/marker.png'
-import Pin from './Pin'
+// import Pin from './Pin'
 
 export default function MapCard({ weatherState, setViewport }) {
   //Update Viewport From Search Props(Geocoder)
@@ -59,16 +59,13 @@ export default function MapCard({ weatherState, setViewport }) {
             onViewportChange={(viewport) => setViewport(viewport)}
           />
       </div>
-      <Marker 
+      {/* <Marker 
         latitude= {weatherState.viewport.longitude}
         longitude= {weatherState.viewport.longitude}
-        draggable= {true}
-        offsetTop= {-10}
-        offsetLeft= {-20}
       >
         <Pin />
-        {/* <img src={marker} alt="NOTHING"/> */}
-      </Marker>
+        <img src={marker} alt="NOTHING"/>
+      </Marker> */}
     </ReactMapGL>
   )  
 }

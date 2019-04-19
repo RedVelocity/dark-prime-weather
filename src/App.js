@@ -32,7 +32,7 @@ class App extends Component {
     axios.get(api)
       .then(res => {
         // console.log(res.data);
-        return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude}, isLoaded: true, isLoading: false })
+        return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude, zoom:10}, isLoaded: true, isLoading: false })
       })
   }
 
