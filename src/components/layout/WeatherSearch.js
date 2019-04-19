@@ -43,10 +43,10 @@ export default class WeatherSearch extends Component {
 
     render() {
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '500px' }} >
+        <div style={{ display: 'flex', justifyContent: 'center', maxWidth: '500px'}} >
         {/* <span className="p-float-label"   > */}
         <InputText 
-              style={{flex: '3'}}
+              style={{flex: '5'}}
               placeholder="Enter Place Name" 
               id="place"
               value={this.state.place} 
@@ -55,7 +55,7 @@ export default class WeatherSearch extends Component {
               {/* <label htmlFor="place">Enter Place Name</label>
         </span> */}
         <Button 
-              style={{flex: '2'}}
+              style={{flex: '4'}}
               label="Get Weather" 
               onClick={this.onSearch} />
         </div>
