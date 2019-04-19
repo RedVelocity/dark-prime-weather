@@ -33,6 +33,8 @@ class App extends Component {
       .then(res => {
         // console.log(res.data);
         return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude, zoom:10}, isLoaded: true, isLoading: false })
+      }).catch((error) => {
+        console.log(error);
       })
   }
 

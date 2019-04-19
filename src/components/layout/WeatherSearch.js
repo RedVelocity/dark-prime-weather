@@ -10,9 +10,9 @@ export default class WeatherSearch extends Component {
     state = { 
         latitude: 12.9791198,
         longitude: 77.5912997,
-        place:'Bengaluru, India',
+        place:'',
         suggestions: null,
-        geoData: null
+        features: null
     };
 
     // onSearch = (e) => {
@@ -43,16 +43,24 @@ export default class WeatherSearch extends Component {
 
     componentDidMount() {
       if(!this.props.isLoaded) {
-        this.props.toggleLoading();
-        this.props.performSearch(this.state.latitude, this.state.longitude);
+        if ("geolocation" in navigator) {
+          /* geolocation is available */
+          navigator.geolocation.getCurrentPosition((position) => {
+            this.setState({ latitude:position.coords.latitude, longitude:position.coords.longitude });
+            this.props.toggleLoading();
+            this.props.performSearch(position.coords.latitude, position.coords.longitude);
+          });
+        } else {
+          /* geolocation IS NOT available */
+        }
       };
     }
 
-    onSearch = (e) => {
+    loadSuggestions = (e) => {
       const api = encodeURI(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.place}.json?access_token=${process.env.REACT_APP_MAPBOX_KEY}&types=place`)
       axios.get(api)
         .then(res => {
-          this.setState({suggestions: res.data.features.map((feature) => feature.place_name), geoData: res.data.features})
+          this.setState({suggestions: res.data.features.map((feature) => feature.place_name), features: res.data.features})
           // console.log('place state', this.state);
         }).catch((error) => {
           console.log(error);
@@ -60,7 +68,7 @@ export default class WeatherSearch extends Component {
     }
 
     onSelect = (e) => {
-      const feature = this.state.geoData.filter((feature) => feature.place_name === e.value);
+      const feature = this.state.features.filter((feature) => feature.place_name === e.value);
       this.setState({latitude:feature[0].geometry.coordinates[1], longitude:feature[0].geometry.coordinates[0]});
       // console.log('selected co-ords',feature[0].geometry.coordinates);
       this.props.toggleLoading();
@@ -72,14 +80,14 @@ export default class WeatherSearch extends Component {
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: '500px'}} >
         {/* <span className="p-float-label"   > */}
         <label 
-          style={{margin: '5px 5px 0px 5px', fontWeight: 'bold'}}
-          htmlFor="place">Enter Place Name</label>
+          style={{margin: '5px 5px 0px 5px', fontWeight: 'bold'}}>Enter Place Name</label>
         <AutoComplete 
           style={{margin: '5px'}}
+          placeholder="Place"
           value={this.state.place} 
           onChange={(e) => this.setState({place: e.target.value})}
           suggestions={this.state.suggestions} 
-          completeMethod={this.onSearch}
+          completeMethod={this.loadSuggestions}
           onSelect={this.onSelect} />
         {/* <InputText 
               style={{flex: '5'}}
