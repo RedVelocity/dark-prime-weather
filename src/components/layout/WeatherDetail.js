@@ -18,7 +18,7 @@ function WeatherDetail({weatherState}) {
     alignItems: 'center', 
     textAlign: 'center', 
     minWidth: '300px', 
-    minHeight: '200px' 
+    minHeight: '100px' 
   };
   const {temperature, icon, summary} = weatherState.weather.currently;
   const isLoading = weatherState.isLoading;
