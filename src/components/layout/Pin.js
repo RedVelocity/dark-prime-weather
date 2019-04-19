@@ -10,7 +10,7 @@ const pinStyle = {
   stroke: 'none'
 };
 
-export default class CityPin extends PureComponent {
+export default class Pin extends PureComponent {
 
   render() {
     const {size = 20} = this.props;

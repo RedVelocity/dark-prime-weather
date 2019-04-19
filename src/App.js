@@ -5,31 +5,34 @@ import 'primereact/resources/themes/nova-colored/theme.css';
 import 'primeicons/primeicons.css';
 import './App.css';
 import WeatherTabs from './components/layout/WeatherTabs';
-// import MapCard from './components/layout/MapCard';
-// import {Messages} from 'primereact/messages';
 
 class App extends Component {
 
   state = { 
     weather: {},
+    viewport: {
+      latitude: 12.9791198,
+      longitude: 77.5912997,
+      zoom: 10
+    },
     isLoaded: false,
     isLoading: false
   };
 
   toggleLoading = () =>  this.setState({isLoading: !this.state.isLoading});
-  setLatLon = (lat, lon) => {
-    this.setState({ ...this.state, weather:{...this.state.weather, latitude:lat, longitude:lon}} );
-    console.log('set lat long in app js', this.state);
+
+  setViewport = (viewport) => {
+    this.setState({ ...this.state, viewport:viewport });
+    // console.log('set viewport in app js', this.state);
   }
 
   performSearch = (lat, lon) => {
-    // console.log(lat, lon, this.state)
     const exclude = '[minutely,hourly,daily,flags]';
     const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_KEY}/${lat},${lon}?units=ca&exclude=${exclude}`;
     axios.get(api)
       .then(res => {
         // console.log(res.data);
-        return this.setState({ weather: res.data, isLoaded: true, isLoading: false })
+        return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude}, isLoaded: true, isLoading: false })
       })
   }
 
@@ -41,7 +44,7 @@ class App extends Component {
             weatherState={this.state} 
             performSearch={this.performSearch} 
             toggleLoading={this.toggleLoading}
-            setLatLon={this.setLatLon} />
+            setViewport={this.setViewport} />
           {/* <MapCard /> */}
       </div>
     );

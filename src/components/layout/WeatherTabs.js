@@ -1,21 +1,27 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {TabView,TabPanel} from 'primereact/tabview';
 import WeatherCard from './WeatherCard';
 import MapCard from './MapCard';
+import PropTypes from 'prop-types';
 
-class WeatherTabs extends Component {
-  render() {
+function WeatherTabs ({ weatherState, performSearch, toggleLoading, setViewport }) {
     return (
         <TabView className="weather-box" renderActiveOnly={false}>
             <TabPanel header="Weather" leftIcon="pi pi-cloud">
-                <WeatherCard weatherState={this.props.weatherState} performSearch={this.props.performSearch} toggleLoading={this.props.toggleLoading} />
+                <WeatherCard weatherState={weatherState} performSearch={performSearch} toggleLoading={toggleLoading} />
             </TabPanel>
             <TabPanel header="Map" leftIcon="pi pi-map-marker">
-                <MapCard weatherState={this.props.weatherState} setLatLon={this.props.setLatLon}/>
+                <MapCard weatherState={weatherState} setViewport={setViewport}/>
             </TabPanel>
         </TabView>
     )
-  }
+}
+
+WeatherTabs.propTypes = {
+  performSearch: PropTypes.func.isRequired,
+  toggleLoading: PropTypes.func.isRequired,
+  setViewport: PropTypes.func.isRequired,
+  weatherState: PropTypes.object.isRequired
 }
 
 export default WeatherTabs;
