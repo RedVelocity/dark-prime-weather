@@ -60,10 +60,10 @@ export default class WeatherSearch extends Component {
         const { toggleLoading, performSearch} = this.props;
         const feature = this.state.features.filter((feature) => feature.place_name === e.value);
         if(feature.length !== 0) {
-          this.setState({latitude:feature[0].geometry.coordinates[1], longitude:feature[0].geometry.coordinates[1]});
+          this.setState({latitude:feature[0].geometry.coordinates[1], longitude:feature[0].geometry.coordinates[0]});
         // console.log('selected co-ords',feature[0].geometry.lat, latitude:feature[0].geometry.lat, this.state);
           toggleLoading();
-          performSearch(feature[0].geometry.coordinates[1], feature[0].geometry.coordinates[1]);
+          performSearch(feature[0].geometry.coordinates[1], feature[0].geometry.coordinates[0]);
         } else this.setState({place: ''})
       } else this.setState({place: ''})
     }
