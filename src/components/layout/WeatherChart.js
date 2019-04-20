@@ -9,7 +9,7 @@ function WeatherChart( {weatherState} ) {
     // console.log('chart props', weather, isLoaded);
     if(weatherState.isLoaded && !weatherState.isLoading) {
         daily = weatherState.weather.daily;
-        console.log('daily', daily);
+        // console.log('daily', daily);
         data = {
         labels: daily.data.map((daily) => moment.unix(daily.time).format('ddd DD/MM')),
         datasets: [

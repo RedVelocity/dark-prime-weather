@@ -14,7 +14,9 @@ class App extends Component {
     viewport: {
       latitude: 12.9791198,
       longitude: 77.5912997,
-      zoom: 16
+      zoom: 11,
+      pitch: 0,
+      bearing: 0
     },
     isLoaded: false,
     isLoading: false
@@ -33,13 +35,14 @@ class App extends Component {
     axios.get(api)
       .then(res => {
         // console.log('weather data', res.data);
-        return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude, zoom:10}, isLoaded: true, isLoading: false })
+        return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude}, isLoaded: true, isLoading: false })
       }).catch((error) => {
         console.log(error);
       })
   }
 
   render() {
+    console.log('App State', this.state);
     return (      
       <div className="Container">
           <WeatherTabs 
