@@ -55,14 +55,14 @@ class App extends Component {
                   fill: false,
                   backgroundColor: '#42A5F5',
                   borderColor: '#42A5F5'
+              },
+              {
+                  label: 'Temperature Low',
+                  data: daily.data.map((daily) => daily.apparentTemperatureLow),
+                  fill: false,
+                  backgroundColor: '#66BB6A',
+                  borderColor: '#66BB6A'
               }
-              // {
-              //     label: 'Second Dataset',
-              //     data: [28, 48, 40, 19, 86, 27, 90],
-              //     fill: false,
-              //     backgroundColor: '#66BB6A',
-              //     borderColor: '#66BB6A'
-              // }
           ]   
       };
       console.log('data', data);
