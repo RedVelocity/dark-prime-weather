@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-// import * as opencage from 'opencage-api-client';
 import PropTypes from 'prop-types';
 // import {InputText} from 'primereact/inputtext';
 // import {Button} from 'primereact/button';
@@ -14,32 +13,6 @@ export default class WeatherSearch extends Component {
         suggestions: null,
         features: null
     };
-
-    // onSearch = (e) => {
-    //     opencage.geocode({q: this.state.place, key: process.env.REACT_APP_OPENCAGE_KEY}).then(data => {
-    //         // console.log(JSON.stringify(data));
-    //         if (data.status.code === 200) {
-    //           if (data.results.length > 0) {
-    //             var place = data.results[0];
-    //             // console.log(place.formatted);
-    //             this.setState({ latitude: place.geometry.lat, longitude: place.geometry.lng  });
-    //             // console.log('geocode',this.state, place.geometry);
-    //             this.props.toggleLoading();
-    //             this.props.performSearch(this.state.latitude, this.state.longitude);
-    //             // console.log(place.annotations.timezone.name);
-    //           }
-    //         } else if (data.status.code === 402) {
-    //           console.log('hit free-trial daily limit');
-    //           console.log('become a customer: https://opencagedata.com/pricing'); 
-    //         } else {
-    //           // other possible response codes:
-    //           // https://opencagedata.com/api#codes
-    //           console.log('error', data.status.message);
-    //         }
-    //       }).catch(error => {
-    //         console.log('error', error.message);
-    //       });
-    // }
 
     componentDidMount() {
       if(!this.props.isLoaded) {
@@ -57,31 +30,41 @@ export default class WeatherSearch extends Component {
     }
 
     loadSuggestions = (e) => {
-      const api = encodeURI(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.place}.json?access_token=${process.env.REACT_APP_MAPBOX_KEY}&types=place`)
+      // const api = encodeURI(`https://api.mapbox.com/geocoding/v5/mapbox.places/${this.state.place}.json?access_token=${process.env.REACT_APP_MAPBOX_KEY}&types=place&proximity=${this.state.longitude},${this.state.latitude}&language=en`)
+      // axios.get(api)
+      //   .then(res => {
+      //     this.setState({suggestions: res.data.features.map((feature) => feature.place_name), features: res.data.features})
+      //     // console.log('place state', this.state);
+      //   }).catch((error) => {
+      //     console.log(error);
+      //   })
+      
+      const api = encodeURI(`https://api.opencagedata.com/geocode/v1/json?q=${this.state.place}&key=${process.env.REACT_APP_OPENCAGE_KEY}&proximity=${this.state.latitude}, ${this.state.longitude}&language=en-in&limit=5&min_confidence=1&no_annotations=1`)
       axios.get(api)
         .then(res => {
-          this.setState({suggestions: res.data.features.map((feature) => feature.place_name), features: res.data.features})
-          // console.log('place state', this.state);
+          this.setState({suggestions: res.data.results.map((feature) => feature.formatted), features: res.data.results})
+          // console.log('place state', res.data.results);
         }).catch((error) => {
           console.log(error);
         })
     }
 
     onSelect = (e) => {
-      const feature = this.state.features.filter((feature) => feature.place_name === e.value);
-      this.setState({latitude:feature[0].geometry.coordinates[1], longitude:feature[0].geometry.coordinates[0]});
-      // console.log('selected co-ords',feature[0].geometry.coordinates);
+      const feature = this.state.features.filter((feature) => feature.formatted === e.value);
+      this.setState({latitude:feature[0].geometry.lat, longitude:feature[0].geometry.lng});
+      // console.log('selected co-ords',feature[0].geometry.lat, latitude:feature[0].geometry.lat, this.state);
       this.props.toggleLoading();
-      this.props.performSearch(feature[0].geometry.coordinates[1], feature[0].geometry.coordinates[0]);
+      this.props.performSearch(feature[0].geometry.lat, feature[0].geometry.lng);
     }
 
     render() {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', maxWidth: '500px'}} >
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '500px'}} >
         {/* <span className="p-float-label"   > */}
         <label 
           style={{margin: '5px 5px 0px 5px', fontWeight: 'bold'}}>Enter Place Name</label>
         <AutoComplete 
+          inputStyle={{margin: '2px', width: '300px'}}
           style={{margin: '5px'}}
           placeholder="Place"
           value={this.state.place} 
