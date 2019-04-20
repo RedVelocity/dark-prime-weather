@@ -7,11 +7,11 @@ function WeatherChart( {weatherState} ) {
     let daily = null;
     let data = null;
     // console.log('chart props', weather, isLoaded);
-    if(weatherState.isLoaded) {
+    if(weatherState.isLoaded && !weatherState.isLoading) {
         daily = weatherState.weather.daily;
         console.log('daily', daily);
         data = {
-        labels: daily.data.map((daily) => moment.unix(daily.time).format('DD/MM')),
+        labels: daily.data.map((daily) => moment.unix(daily.time).format('ddd DD/MM')),
         datasets: [
             {
                 label: 'Temperature High',
@@ -33,7 +33,7 @@ function WeatherChart( {weatherState} ) {
   }
   return (
     <div className="weather-card">      
-      {(data !== null) && <Chart type="line" data={data} /> }
+      {(data !== null) && <Chart type="line" data={data} width="500px" /> }
     </div>
   )
 }

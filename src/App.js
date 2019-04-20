@@ -14,7 +14,7 @@ class App extends Component {
     viewport: {
       latitude: 12.9791198,
       longitude: 77.5912997,
-      zoom: 12
+      zoom: 16
     },
     isLoaded: false,
     isLoading: false
