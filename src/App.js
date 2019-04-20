@@ -5,26 +5,36 @@ import 'primereact/resources/themes/nova-colored/theme.css';
 import 'primeicons/primeicons.css';
 import './App.css';
 import WeatherTabs from './components/layout/WeatherTabs';
-// import {Messages} from 'primereact/messages';
 
 class App extends Component {
 
   state = { 
     weather: {},
+    viewport: {
+      latitude: 12.9791198,
+      longitude: 77.5912997,
+      zoom: 12
+    },
     isLoaded: false,
     isLoading: false
   };
 
   toggleLoading = () =>  this.setState({isLoading: !this.state.isLoading});
 
+  setViewport = (viewport) => {
+    this.setState({ ...this.state, viewport:viewport });
+    // console.log('set viewport in app js', this.state);
+  }
+
   performSearch = (lat, lon) => {
-    console.log(lat, lon, this.state)
     const exclude = '[minutely,hourly,daily,flags]';
-    const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/9f911aad47a388aa161a81af34f48144/${lat},${lon}?units=ca&exclude=${exclude}`;
+    const api = `https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/${process.env.REACT_APP_DARKSKY_KEY}/${lat},${lon}?units=ca&exclude=${exclude}`;
     axios.get(api)
       .then(res => {
-        console.log(res.data);
-        return this.setState({ weather: res.data, isLoaded: true, isLoading: false })
+        // console.log(res.data);
+        return this.setState({ weather: res.data, viewport:{...this.state.viewport, latitude: res.data.latitude, longitude: res.data.longitude, zoom:10}, isLoaded: true, isLoading: false })
+      }).catch((error) => {
+        console.log(error);
       })
   }
 
@@ -32,7 +42,12 @@ class App extends Component {
     return (
       <div className="Container">
           {/* {console.log(this.state)}          */}
-          <WeatherTabs weatherState={this.state} performSearch={this.performSearch} toggleLoading={this.toggleLoading} />
+          <WeatherTabs 
+            weatherState={this.state} 
+            performSearch={this.performSearch} 
+            toggleLoading={this.toggleLoading}
+            setViewport={this.setViewport} />
+          {/* <MapCard /> */}
       </div>
     );
   }
