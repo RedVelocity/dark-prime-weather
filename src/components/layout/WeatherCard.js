@@ -11,11 +11,10 @@ import { Offline } from 'react-detect-offline';
 function WeatherCard ( {weatherState, performSearch, toggleLoading} ) {
     return (
       <div className="weather-card">
-      <Offline><Message severity="warn" text="Currently Offline"></Message></Offline>
         <br />
         <WeatherSearch performSearch={performSearch} toggleLoading={toggleLoading} isLoaded={weatherState.isLoaded} />
-          {(weatherState.isLoaded) && 
-            <WeatherDetail weatherState={weatherState} />}
+        {(weatherState.isLoaded) && <WeatherDetail weatherState={weatherState} />}
+        <Offline><Message severity="warn" text="Currently Offline"></Message></Offline>
       </div>
     )
   }

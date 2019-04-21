@@ -74,13 +74,12 @@ export default class WeatherSearch extends Component {
 
     render() {
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', width: '500px'}} >
+        <div className="weather-search">
         {/* <span className="p-float-label"   > */}
         <label 
-          style={{margin: '5px 5px 0px 5px', fontWeight: 'bold'}}>Enter Place Name</label>
+          style={{fontWeight: 'bold'}}>Enter Place Name</label>
         <AutoComplete 
-          inputStyle={{margin: '2px', width: '300px'}}
-          style={{margin: '5px'}}
+          inputStyle={{marginTop: '2px', width: '300px'}}
           placeholder="Place"
           value={this.state.place} 
           onChange={(e) => this.setState({place: e.target.value})}
@@ -88,7 +87,6 @@ export default class WeatherSearch extends Component {
           completeMethod={this.loadSuggestions}
           onSelect={this.onSelect} />
         {/* <InputText 
-              style={{flex: '5'}}
               placeholder="Enter Place Name" 
               id="place"
               value={this.state.place} 
@@ -97,7 +95,6 @@ export default class WeatherSearch extends Component {
               {/* <label htmlFor="place">Enter Place Name</label>
         </span> */}
         {/* <Button 
-              style={{flex: '4'}}
               label="Get Weather" 
               onClick={this.onSearchv2} /> */}
         </div>

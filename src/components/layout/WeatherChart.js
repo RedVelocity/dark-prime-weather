@@ -32,7 +32,7 @@ function WeatherChart( {weatherState} ) {
     // console.log('data', data);
   }
   return (
-    <div className="weather-card">      
+    <div>      
       {(data !== null) && <Chart type="line" data={data} width="500px" /> }
     </div>
   )

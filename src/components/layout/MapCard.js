@@ -43,10 +43,11 @@ export default function MapCard({ weatherState, setViewport }) {
     //   showCompass: true
     // };
     return (
+    <div style={{display: 'grid'}}>
     <ReactMapGL
       {...weatherState.viewport}
-      width="75vw"
-      height="60vh"
+      width="900px"
+      height="400px"
       // scrollZoom={false}
       // interactive={false}
       // dragPan={false}
@@ -67,6 +68,7 @@ export default function MapCard({ weatherState, setViewport }) {
         <img src={marker} alt="NOTHING"/>
       </Marker> */}
     </ReactMapGL>
+  </div>
   )  
 }
 

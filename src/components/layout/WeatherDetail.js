@@ -12,24 +12,23 @@ function WeatherDetail({weatherState}) {
     animate: true
   };
   
-  const styleDetail={ 
-    display : 'flex', 
-    justifyContent: 'center', 
-    alignItems: 'center', 
-    textAlign: 'center', 
-    minWidth: '300px', 
-    minHeight: '100px' 
-  };
+  // const styleDetail={ 
+  //   display : 'flex', 
+  //   justifyContent: 'center', 
+  //   alignItems: 'center', 
+  //   textAlign: 'center', 
+  //   minWidth: '300px', 
+  //   minHeight: '100px' 
+  // };
   const {temperature, icon, summary} = weatherState.weather.currently;
-  const isLoading = weatherState.isLoading;
+  const { isLoading, isLoaded } = weatherState;
     return (    
       <React.Fragment>
-        {(!isLoading) ?
-        <div style={styleDetail}>
-          <h3 style={{flex: '3'}} >{Math.round(temperature)}°C </h3>
-          <h3 style={{flex: '3'}} >{summary}</h3>
-          <div 
-            style={{flex: '3'}}>
+        {(!isLoading && isLoaded) ?
+        <div className="weather-detail">
+          <h3  >{Math.round(temperature)}°C </h3>
+          <h3  >{summary}</h3>
+          <div>
             <ReactAnimatedWeather 
               icon={icon.replace(/-/g, "_").toUpperCase()}
               color={defaults.color}
@@ -38,7 +37,7 @@ function WeatherDetail({weatherState}) {
             />
           </div>
         </div> 
-        : <div style={styleDetail}><h3>Loading...</h3></div>
+        : <div className="weather-detail"><h3>Loading...</h3></div>
         }
       </React.Fragment>
     )

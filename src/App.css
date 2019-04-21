@@ -12,13 +12,27 @@ body {
   width: 100vw;
 }
 
-.weather-container {
-  /* min-height: 30vh;
-  min-width: 50wh; */
+.Container{
+  /* text-align: center; */
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  /* background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));
+  background-image: -webkit-linear-gradient(top, #311847, #3EB9E6);
+  background-image: -moz-linear-gradient(top, #311847, #3EB9E6);
+  background-image: linear-gradient(to bottom, #311847, #3EB9E6); */
+}
+.tab-container {
+  /* width: 800px;
+  height: 600px; */
   /* display: flex;
   flex-direction: column; */
   /* align-items: center;
   justify-content: center;  */
+  margin: 0 auto;
   position: relative;
   font-family: 'Abel', sans-serif;
   animation-name: introduction;
@@ -26,41 +40,55 @@ body {
 }
 
 .weather-box {
-  min-height: 60vh;
-  width: 75vw;
-  display: flex;
+  /* min-height: 60vh;
+  width: 75vw; */
+  width: 900px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 1.5fr 2fr;
+  grid-template-rows: auto;
   /* flex-direction: column; */
-  /* align-items: center;
-  justify-content: center;  */
+  align-content: center;
+  justify-content: center; 
   position: relative;
   font-family: 'Abel', sans-serif;
+  /* border: 2px dashed #76fff8; */
 }
 
 .weather-card {
   /* min-height: 60vh;
   width: 75vw; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-rows: auto;
+  grid-row-gap: 20px;
+  /* border: 2px solid #850007; */
+  /* align-items: center; */
+  align-content: center;
   justify-content: center; 
-  position: relative;
-  /* font-family: 'Abel', sans-serif;   */
-  /* animation-name: introduction;
-  animation-duration: 2s;  */
 }
 
-.Container{
-  /* text-align: center; */
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-image: -webkit-gradient(linear, left top, left bottom, from(#311847), to(#3EB9E6));
-  background-image: -webkit-linear-gradient(top, #311847, #3EB9E6);
-  background-image: -moz-linear-gradient(top, #311847, #3EB9E6);
-  background-image: linear-gradient(to bottom, #311847, #3EB9E6); */
+.weather-search {
+  display: grid;
+  /* border: 2px solid #4194c4; */
+  /* margin: 5px; */
+  align-content: center;
+  justify-content: center; 
+}
+
+.weather-detail {
+  display: grid;
+  grid-template-columns: 40px 140px 40px;
+  grid-column-gap: 20px;
+  grid-template-rows: auto;
+  /* border: 2px solid #fffb00; */
+  justify-content: center; 
+  justify-items: center;
+  min-height: 100px;
+}
+
+.weather-detail-item {
+  width: 100%;
+  height: 100%
 }
 
 .App-header {
