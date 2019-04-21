@@ -80,7 +80,7 @@ body {
   grid-template-columns: 40px 140px 40px;
   grid-column-gap: 20px;
   grid-template-rows: auto;
-  /* border: 2px solid #fffb00; */
+  /* border: 2px solid #f7a800; */
   justify-content: center; 
   justify-items: center;
   min-height: 100px;
@@ -91,27 +91,21 @@ body {
   height: 100%
 }
 
-.App-header {
-  --background-color: rgb(25, 114, 102);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media only screen and (max-width: 500px) {
+  .weather-box {
+    /* min-height: 60vh;
+    width: 75vw; */
+    width: 400px;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 1.5fr 2fr;
+    /* flex-direction: column; */
+    align-content: center;
+    justify-content: center; 
+    position: relative;
+    font-family: 'Abel', sans-serif;
+    /* border: 2px dashed #76fff8; */
   }
 }
 
@@ -136,62 +130,4 @@ body {
   100%{
       opacity:1;
   }
-}
-
-.weatherdetail-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.weatherdetail-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 100ms, transform 300ms;
-}
-.weatherdetail-exit {
-  opacity: 1;
-}
-.weatherdetail-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 100ms, transform 300ms;
-}
-
-.loading-enter {
-  opacity: 0;
-  transform: scale(0.9);
-}
-.loading-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 100ms, transform 300ms;
-}
-.loading-exit {
-  opacity: 1;
-}
-.loading-exit-active {
-  opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 100ms, transform 300ms;
-}
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-
-.halfheight {
-    height: 50%;
 }

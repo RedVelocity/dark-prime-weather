@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment';
 import {Chart} from 'primereact/chart';
+// import Media from 'react-media';
+import MediaQuery from 'react-responsive';
 
 function WeatherChart( {weatherState} ) {
 
@@ -17,23 +19,48 @@ function WeatherChart( {weatherState} ) {
                 label: 'Temperature High',
                 data: daily.data.map((daily) => daily.apparentTemperatureHigh),
                 fill: false,
-                backgroundColor: '#42A5F5',
-                borderColor: '#42A5F5'
+                backgroundColor: '#f7a800',
+                borderColor: '#f7a800'  
             },
             {
                 label: 'Temperature Low',
                 data: daily.data.map((daily) => daily.apparentTemperatureLow),
                 fill: false,
-                backgroundColor: '#66BB6A',
-                borderColor: '#66BB6A'
+                backgroundColor: '#42A5F5',
+                borderColor: '#42A5F5'
             }
         ]   
     };
     // console.log('data', data);
   }
   return (
-    <div>      
+    <div>
+    {/* <Media query="(max-width: 500px)">
+          {matches =>
+            matches ? (              
+            <div>      
+              {(data !== null) && <Chart type="line" data={data} width="380px" /> }
+            </div>
+            ) : (
+            <div>      
+              {(data !== null) && <Chart type="line" data={data} width="500px" /> }
+            </div>
+            )
+          }
+    </Media> */}
+    <MediaQuery maxWidth={500}>
+    {(matches) => {
+    if (matches) {
+      return <div>      
+      {(data !== null) && <Chart type="line" data={data} width="380px" /> }
+    </div>;
+    } else {
+      return <div>
       {(data !== null) && <Chart type="line" data={data} width="500px" /> }
+    </div>
+    }
+    }}
+    </MediaQuery>
     </div>
   )
 }

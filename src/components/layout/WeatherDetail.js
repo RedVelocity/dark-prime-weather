@@ -20,11 +20,11 @@ function WeatherDetail({weatherState}) {
   //   minWidth: '300px', 
   //   minHeight: '100px' 
   // };
-  const {temperature, icon, summary} = weatherState.weather.currently;
-  const { isLoading, isLoaded } = weatherState;
+  const { temperature, icon, summary } = weatherState.weather.currently;
+  const { isLoading } = weatherState;
     return (    
       <React.Fragment>
-        {(!isLoading && isLoaded) ?
+        {(!isLoading) ?
         <div className="weather-detail">
           <h3  >{Math.round(temperature)}°C </h3>
           <h3  >{summary}</h3>
