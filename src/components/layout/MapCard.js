@@ -14,8 +14,8 @@ export default function MapCard({ weatherState, setViewport }) {
             return (
               <ReactMapGL
                 {...weatherState.viewport}
-                width="400px"
-                height="auto"
+                width="90vw"
+                height="90vh"
                 onViewportChange={viewport => setViewport(viewport)}
                 mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
@@ -31,8 +31,8 @@ export default function MapCard({ weatherState, setViewport }) {
             return (
               <ReactMapGL
                 {...weatherState.viewport}
-                width="900px"
-                height="400px"
+                width="70vw"
+                height="75vh"
                 onViewportChange={viewport => setViewport(viewport)}
                 mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
