@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
-// import {InputText} from 'primereact/inputtext';
-// import {Button} from 'primereact/button';
 import { AutoComplete } from "primereact/autocomplete";
+import { getLocation, getSuggestions } from "../../API";
 
 export default class WeatherSearch extends Component {
   state = {
@@ -21,34 +19,28 @@ export default class WeatherSearch extends Component {
     if (!isLoaded) {
       if ("geolocation" in navigator) {
         /* geolocation is available */
-        navigator.geolocation.getCurrentPosition(position => {
+        // const asyncGetCurrentPosition = options =>
+        //   new Promise((resolve, reject) => {
+        //     navigator.geolocation.getCurrentPosition(resolve, reject, options);
+        //   }); loc= await asyncGetCurrentPosition;
+        navigator.geolocation.getCurrentPosition(async position => {
+          const {
+            coords: { latitude, longitude }
+          } = position;
           this.setState({
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
+            latitude: latitude,
+            longitude: longitude
           });
           toggleLoading();
-          let api = encodeURI(
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/${
-              position.coords.longitude
-            },${position.coords.latitude}.json?access_token=${
-              process.env.REACT_APP_MAPBOX_KEY
-            }&types=place,locality&language=en&limit=1`
-          );
-          axios
-            .get(api)
-            .then(res => {
-              if (res.data.features.length !== 0) {
-                this.setState({
-                  ...this.state,
-                  place_name: res.data.features[0].place_name_en
-                });
-              }
-              // console.log("reverse geo", res.data);
-            })
-            .catch(error => {
-              console.log(error);
+          const res = await getLocation(latitude, longitude);
+          // console.log("res data getloc", res);
+          if (res !== 0) {
+            this.setState({
+              ...this.state,
+              place_name: res.data.features[0].place_name_en
             });
-          performSearch(position.coords.latitude, position.coords.longitude);
+          }
+          performSearch(latitude, longitude);
         });
       } else {
         /* geolocation IS NOT available */
@@ -56,44 +48,23 @@ export default class WeatherSearch extends Component {
     }
   }
 
-  loadSuggestions = e => {
-    let api;
-    if (this.state.latitude !== null)
-      api = encodeURI(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${
-          this.state.place
-        }.json?access_token=${
-          process.env.REACT_APP_MAPBOX_KEY
-        }&types=place,locality&proximity=${this.state.longitude},${
-          this.state.latitude
-        }&language=en`
-      );
-    else
-      api = encodeURI(
-        `https://api.mapbox.com/geocoding/v5/mapbox.places/${
-          this.state.place
-        }.json?access_token=${
-          process.env.REACT_APP_MAPBOX_KEY
-        }&types=place,locality&language=en`
-      );
-    axios
-      .get(api)
-      .then(res => {
-        if (res.data.features.length !== 0) {
-          this.setState({
-            suggestions: res.data.features.map(feature => feature.place_name),
-            features: res.data.features
-          });
-          // console.log('place state', this.state);
-        } else
-          this.setState({
-            ...this.state,
-            features: null,
-            suggestions: ["Place Not Found"]
-          });
-      })
-      .catch(error => {
-        console.log(error);
+  loadSuggestions = async e => {
+    const res = await getSuggestions(
+      this.state.latitude,
+      this.state.longitude,
+      this.state.place
+    );
+    if (res !== 0) {
+      this.setState({
+        suggestions: res.data.features.map(feature => feature.place_name),
+        features: res.data.features
+      });
+      // console.log('place state', this.state);
+    } else
+      this.setState({
+        ...this.state,
+        features: null,
+        suggestions: ["Place Not Found"]
       });
 
     // const api = encodeURI(`https://api.opencagedata.com/geocode/v1/json?q=${this.state.place}&key=${process.env.REACT_APP_OPENCAGE_KEY}&proximity=${this.state.latitude}, ${this.state.longitude}&language=en-in&limit=5&min_confidence=1&no_annotations=1&abbrv=1`)
@@ -116,7 +87,6 @@ export default class WeatherSearch extends Component {
         feature => feature.place_name === e.value
       );
       if (feature.length !== 0) {
-        // this.setState({latitude:feature[0].geometry.coordinates[1], longitude:feature[0].geometry.coordinates[0]});
         // console.log('selected co-ords',feature[0].geometry.lat, latitude:feature[0].geometry.lat, this.state);
         toggleLoading();
         performSearch(
