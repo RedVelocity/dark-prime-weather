@@ -5,7 +5,6 @@ import "primeicons/primeicons.css";
 import "./App.css";
 import WeatherTabs from "./components/layout/WeatherTabs";
 import { getWeather } from "./API";
-// import Moment from 'react-moment';
 
 class App extends Component {
   state = {
@@ -54,7 +53,6 @@ class App extends Component {
           toggleLoading={this.toggleLoading}
           setViewport={this.setViewport}
         />
-        {/* <MapCard /> */}
       </div>
     );
   }
