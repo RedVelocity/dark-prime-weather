@@ -55,7 +55,7 @@ function WeatherChart({ weatherState }) {
             return (
               <div>
                 {data !== null && (
-                  <Chart type="line" data={data} width="90vw" />
+                  <Chart type="line" data={data} width="85vw" />
                 )}
               </div>
             );

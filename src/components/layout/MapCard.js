@@ -1,7 +1,8 @@
 import React from "react";
-import ReactMapGL, { NavigationControl } from "react-map-gl";
+import { StaticMap, Marker } from "react-map-gl";
 import PropTypes from "prop-types";
 import MediaQuery from "react-responsive";
+import marker from "../../assets/marker.png";
 // import marker from '../../assets/marker.png'
 // import Pin from './Pin'
 
@@ -12,37 +13,60 @@ export default function MapCard({ weatherState, setViewport }) {
         {matches => {
           if (matches) {
             return (
-              <ReactMapGL
+              // <ReactMapGL
+              //   {...weatherState.viewport}
+              //   width="85vw"
+              //   height="80vh"
+              //   onViewportChange={viewport => setViewport(viewport)}
+              //   mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
+              //   mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
+              // >
+              //   <div style={{ position: "absolute", right: 0 }}>
+              //     <NavigationControl
+              //       onViewportChange={viewport => setViewport(viewport)}
+              //     />
+              //   </div>
+              // </ReactMapGL>
+              <StaticMap
+                width="85vw"
+                height="80vh"
                 {...weatherState.viewport}
-                width="90vw"
-                height="90vh"
-                onViewportChange={viewport => setViewport(viewport)}
-                mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
-              >
-                <div style={{ position: "absolute", right: 0 }}>
-                  <NavigationControl
-                    onViewportChange={viewport => setViewport(viewport)}
-                  />
-                </div>
-              </ReactMapGL>
+                mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
+              />
             );
           } else {
             return (
-              <ReactMapGL
-                {...weatherState.viewport}
+              // <ReactMapGL
+              //   {...weatherState.viewport}
+              //   width="70vw"
+              //   height="75vh"
+              //   onViewportChange={viewport => setViewport(viewport)}
+              //   mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
+              //   mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
+              // >
+              //   <div style={{ position: "absolute", right: 0 }}>
+              //     <NavigationControl
+              //       onViewportChange={viewport => setViewport(viewport)}
+              //     />
+              //   </div>
+              // </ReactMapGL>
+              <StaticMap
                 width="70vw"
                 height="75vh"
-                onViewportChange={viewport => setViewport(viewport)}
-                mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
+                {...weatherState.viewport}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
+                mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
               >
-                <div style={{ position: "absolute", right: 0 }}>
-                  <NavigationControl
-                    onViewportChange={viewport => setViewport(viewport)}
-                  />
-                </div>
-              </ReactMapGL>
+                <Marker
+                  latitude={weatherState.viewport.latitude}
+                  longitude={weatherState.viewport.longitude}
+                  offsetLeft={-20}
+                  offsetTop={-10}
+                >
+                  <img src={marker} alt="" />
+                </Marker>
+              </StaticMap>
             );
           }
         }}

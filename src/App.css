@@ -101,8 +101,8 @@ body {
   .weather-box {
     /* min-height: 60vh;
     width: 75vw; */
-    width: 90vw;
-    height: 90vh;
+    width: 85vw;
+    height: 80vh;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 1.5fr 2fr;
