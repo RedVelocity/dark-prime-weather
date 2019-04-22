@@ -88,6 +88,13 @@ body {
   min-height: 100px;
 }
 
+.weather-loading {
+  max-width: 200px;
+  justify-content: center;
+  justify-items: center;
+  min-height: 100px;
+}
+
 .weather-detail {
   display: grid;
   grid-template-columns: 40px 120px 40px;
@@ -98,6 +105,7 @@ body {
   justify-content: center;
   justify-items: center;
   min-height: 100px;
+  /* margin: 5px; */
 }
 
 .weather-detail-item {

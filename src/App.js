@@ -29,18 +29,18 @@ class App extends Component {
     const res = await getWeather(lat, lon);
     // console.log("res data appjs", res);
     if (res !== 0) {
-      return this.setState({
-        weather: res.data,
+      this.setState({
+        weather: res,
         viewport: {
           ...this.state.viewport,
-          latitude: res.data.latitude,
-          longitude: res.data.longitude,
+          latitude: res.latitude,
+          longitude: res.longitude,
           zoom: 11
         },
         isLoaded: true,
         isLoading: false
       });
-    } else return null;
+    }
   };
 
   render() {

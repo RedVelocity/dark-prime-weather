@@ -11,14 +11,6 @@ function WeatherDetail({ weatherState }) {
     animate: true
   };
 
-  // const styleDetail={
-  //   display : 'flex',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   textAlign: 'center',
-  //   minWidth: '300px',
-  //   minHeight: '100px'
-  // };
   const { temperature, icon, summary } = weatherState.weather.currently;
   const { isLoading } = weatherState;
   return (
@@ -37,7 +29,7 @@ function WeatherDetail({ weatherState }) {
           </div>
         </div>
       ) : (
-        <div className="weather-detail">
+        <div className="weather-loading">
           <h3>Loading...</h3>
         </div>
       )}

@@ -37,7 +37,7 @@ export default class WeatherSearch extends Component {
           if (res !== 0) {
             this.setState({
               ...this.state,
-              place_name: res.data.features[0].place_name_en
+              place_name: res.features[0].place_name_en
             });
           }
           performSearch(latitude, longitude);
@@ -54,18 +54,17 @@ export default class WeatherSearch extends Component {
       this.state.longitude,
       this.state.place
     );
-    if (res !== 0) {
-      this.setState({
-        suggestions: res.data.features.map(feature => feature.place_name),
-        features: res.data.features
-      });
-      // console.log('place state', this.state);
-    } else
-      this.setState({
-        ...this.state,
-        features: null,
-        suggestions: ["Place Not Found"]
-      });
+    res !== 0
+      ? this.setState({
+          suggestions: res.features.map(feature => feature.place_name),
+          features: res.features
+        })
+      : // console.log('place state', this.state);
+        this.setState({
+          ...this.state,
+          features: null,
+          suggestions: ["Place Not Found"]
+        });
 
     // const api = encodeURI(`https://api.opencagedata.com/geocode/v1/json?q=${this.state.place}&key=${process.env.REACT_APP_OPENCAGE_KEY}&proximity=${this.state.latitude}, ${this.state.longitude}&language=en-in&limit=5&min_confidence=1&no_annotations=1&abbrv=1`)
     // axios.get(api)
@@ -111,7 +110,7 @@ export default class WeatherSearch extends Component {
           completeMethod={this.loadSuggestions}
           onSelect={this.onSelect}
         />
-        <label>{this.state.place_name}</label>
+        <label style={{ margin: "10px" }}>{this.state.place_name}</label>
       </div>
     );
   }

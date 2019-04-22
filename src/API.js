@@ -9,7 +9,7 @@ export function getWeather(latitude, longitude) {
     .get(api)
     .then(res => {
       // console.log('weather data', res.data);
-      return res;
+      return res.status === 200 ? res.data : 0;
     })
     .catch(error => {
       console.log(error);
@@ -26,10 +26,7 @@ export function getLocation(latitude, longitude) {
   return axios
     .get(api)
     .then(res => {
-      if (res.data.features.length !== 0) {
-        return res;
-      }
-      return 0;
+      return res.data.features.length !== 0 ? res.data : 0;
     })
     .catch(error => {
       console.log(error);
@@ -54,12 +51,10 @@ export function getSuggestions(latitude, longitude, place) {
   return axios
     .get(api)
     .then(res => {
-      if (res.data.features.length !== 0) {
-        return res;
-        // console.log('place state', this.state);
-      } else return 0;
+      return res.data.features.length !== 0 ? res.data : 0;
     })
     .catch(error => {
       console.log(error);
+      return 0;
     });
 }

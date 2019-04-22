@@ -10,7 +10,6 @@ function WeatherChart({ weatherState }) {
   // console.log('chart props', weather, isLoaded);
   if (weatherState.isLoaded && !weatherState.isLoading) {
     daily = weatherState.weather.daily;
-    // console.log('daily', daily);
     data = {
       labels: daily.data.map(daily =>
         moment.unix(daily.time).format("ddd DD/MM")
@@ -18,14 +17,18 @@ function WeatherChart({ weatherState }) {
       datasets: [
         {
           label: "Temperature High",
-          data: daily.data.map(daily => daily.apparentTemperatureHigh),
+          data: daily.data.map(daily =>
+            Math.round(daily.apparentTemperatureHigh)
+          ),
           fill: false,
           backgroundColor: "#f7a800",
           borderColor: "#f7a800"
         },
         {
           label: "Temperature Low",
-          data: daily.data.map(daily => daily.apparentTemperatureLow),
+          data: daily.data.map(daily =>
+            Math.round(daily.apparentTemperatureLow)
+          ),
           fill: false,
           backgroundColor: "#42A5F5",
           borderColor: "#42A5F5"
