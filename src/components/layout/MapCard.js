@@ -33,7 +33,16 @@ export default function MapCard({ weatherState, setViewport }) {
                 {...weatherState.viewport}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_KEY}
                 mapStyle="mapbox://styles/redvelocity/cjumbtame019l1ft8zigwi1cd"
-              />
+              >
+                <Marker
+                  latitude={weatherState.viewport.latitude}
+                  longitude={weatherState.viewport.longitude}
+                  offsetLeft={-20}
+                  offsetTop={-10}
+                >
+                  <img src={marker} alt="" />
+                </Marker>
+              </StaticMap>
             );
           } else {
             return (
