@@ -30,8 +30,8 @@ function WeatherChart({ weatherState }) {
             Math.round(daily.apparentTemperatureLow)
           ),
           fill: false,
-          backgroundColor: "#42A5F5",
-          borderColor: "#42A5F5"
+          backgroundColor: "#1385ae",
+          borderColor: "#1385ae"
         }
       ]
     };

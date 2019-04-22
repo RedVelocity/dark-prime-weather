@@ -6,7 +6,7 @@ import ReactAnimatedWeather from "react-animated-weather";
 // import './../../App.css';
 function WeatherDetail({ weatherState }) {
   const defaults = {
-    color: "#42A5F5",
+    color: "#1385ae",
     size: 50,
     animate: true
   };

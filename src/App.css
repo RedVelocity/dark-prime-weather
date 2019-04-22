@@ -4,11 +4,11 @@ body {
     left top,
     left bottom,
     from(#311847),
-    to(#3eb9e6)
+    to(#1385ae)
   );
-  background-image: -webkit-linear-gradient(top, #311847, #3eb9e6);
-  background-image: -moz-linear-gradient(top, #311847, #3eb9e6);
-  background-image: linear-gradient(to bottom, #311847, #3eb9e6);
+  background-image: -webkit-linear-gradient(top, #311847, #1385ae);
+  background-image: -moz-linear-gradient(top, #311847, #1385ae);
+  background-image: linear-gradient(to bottom, #311847, #1385ae);
 }
 
 #root {
