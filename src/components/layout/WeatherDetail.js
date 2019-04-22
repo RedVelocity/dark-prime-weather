@@ -1,9 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactAnimatedWeather from "react-animated-weather";
-// import { Transition, animated } from 'react-spring/renderprops';
-// import {  CSSTransition, TransitionGroup  } from 'react-transition-group';
-// import './../../App.css';
 function WeatherDetail({ weatherState }) {
   const defaults = {
     color: "#1385ae",

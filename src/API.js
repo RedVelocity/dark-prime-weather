@@ -35,19 +35,15 @@ export function getLocation(latitude, longitude) {
 }
 
 export function getSuggestions(latitude, longitude, place) {
-  let api;
-  if (latitude !== null)
-    api = encodeURI(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=${
-        process.env.REACT_APP_MAPBOX_KEY
-      }&types=place,locality&proximity=${longitude},${latitude}&language=en`
-    );
-  else
-    api = encodeURI(
-      `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=${
-        process.env.REACT_APP_MAPBOX_KEY
-      }&types=place,locality&language=en`
-    );
+  let proximity;
+  latitude !== null
+    ? (proximity = "&proximity=" + longitude + "," + latitude)
+    : (proximity = "");
+  const api = encodeURI(
+    `https://api.mapbox.com/geocoding/v5/mapbox.places/${place}.json?access_token=${
+      process.env.REACT_APP_MAPBOX_KEY
+    }&types=place,locality${proximity}&language=en`
+  );
   return axios
     .get(api)
     .then(res => {

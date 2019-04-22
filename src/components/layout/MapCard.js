@@ -3,8 +3,6 @@ import { StaticMap, Marker } from "react-map-gl";
 import PropTypes from "prop-types";
 import MediaQuery from "react-responsive";
 import marker from "../../assets/marker.png";
-// import marker from '../../assets/marker.png'
-// import Pin from './Pin'
 
 export default function MapCard({ weatherState, setViewport }) {
   return (

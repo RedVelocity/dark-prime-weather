@@ -5,12 +5,15 @@ import { getLocation, getSuggestions } from "../../API";
 
 export default class WeatherSearch extends Component {
   state = {
-    //hold gps location for proximity
+    //hold gps location for proximity suggestions
     latitude: null,
     longitude: null,
+    //user entered text
     place: "",
+    //place suggestions and coords in features
     suggestions: null,
     features: null,
+    //user selected text
     place_name: ""
   };
 
@@ -65,18 +68,6 @@ export default class WeatherSearch extends Component {
           features: null,
           suggestions: ["Place Not Found"]
         });
-
-    // const api = encodeURI(`https://api.opencagedata.com/geocode/v1/json?q=${this.state.place}&key=${process.env.REACT_APP_OPENCAGE_KEY}&proximity=${this.state.latitude}, ${this.state.longitude}&language=en-in&limit=5&min_confidence=1&no_annotations=1&abbrv=1`)
-    // axios.get(api)
-    //   .then(res => {
-    //     if(res.data.results.length !== 0) {
-    //       this.setState(
-    //         {suggestions: res.data.results.map((feature) => feature.formatted), features: res.data.results})
-    //     // console.log('place state', res.data.results.length);
-    //     } else this.setState({ ...this.state, fetaures:null, suggestions: ['Place Not Found'] })
-    //   }).catch((error) => {
-    //     console.log(error);
-    //   })
   };
 
   onSelect = e => {

@@ -20,11 +20,7 @@ function WeatherCard({ weatherState, performSearch, toggleLoading }) {
         toggleLoading={toggleLoading}
         isLoaded={weatherState.isLoaded}
       />
-      {weatherState.isLoaded ? (
-        <WeatherDetail weatherState={weatherState} />
-      ) : (
-        <div className="weather-detail" />
-      )}
+      {weatherState.isLoaded && <WeatherDetail weatherState={weatherState} />}
     </div>
   );
 }
