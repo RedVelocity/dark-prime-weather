@@ -12,7 +12,8 @@ export default class WeatherSearch extends Component {
     longitude: null,
     place: "",
     suggestions: null,
-    features: null
+    features: null,
+    place_name: ""
   };
 
   componentDidMount() {
@@ -26,6 +27,27 @@ export default class WeatherSearch extends Component {
             longitude: position.coords.longitude
           });
           toggleLoading();
+          let api = encodeURI(
+            `https://api.mapbox.com/geocoding/v5/mapbox.places/${
+              position.coords.longitude
+            },${position.coords.latitude}.json?access_token=${
+              process.env.REACT_APP_MAPBOX_KEY
+            }&types=place,locality&language=en&limit=1`
+          );
+          axios
+            .get(api)
+            .then(res => {
+              if (res.data.features.length !== 0) {
+                this.setState({
+                  ...this.state,
+                  place_name: res.data.features[0].place_name_en
+                });
+              }
+              // console.log("reverse geo", res.data);
+            })
+            .catch(error => {
+              console.log(error);
+            });
           performSearch(position.coords.latitude, position.coords.longitude);
         });
       } else {
@@ -101,6 +123,7 @@ export default class WeatherSearch extends Component {
           feature[0].geometry.coordinates[1],
           feature[0].geometry.coordinates[0]
         );
+        this.setState({ place: "", place_name: e.value });
       } else this.setState({ place: "" });
     } else this.setState({ place: "" });
   };
@@ -109,27 +132,16 @@ export default class WeatherSearch extends Component {
     return (
       <div className="weather-search">
         {/* <span className="p-float-label"   > */}
-        <label style={{ fontWeight: "bold" }}>Enter Place Name</label>
         <AutoComplete
           inputStyle={{ marginTop: "2px", width: "300px" }}
-          placeholder="Place"
+          placeholder="Enter Place Name"
           value={this.state.place}
           onChange={e => this.setState({ place: e.target.value })}
           suggestions={this.state.suggestions}
           completeMethod={this.loadSuggestions}
           onSelect={this.onSelect}
         />
-        {/* <InputText 
-              placeholder="Enter Place Name" 
-              id="place"
-              value={this.state.place} 
-              onChange={(e) => this.setState({place: e.target.value})}    
-              /> */}
-        {/* <label htmlFor="place">Enter Place Name</label>
-        </span> */}
-        {/* <Button 
-              label="Get Weather" 
-              onClick={this.onSearchv2} /> */}
+        <label>{this.state.place_name}</label>
       </div>
     );
   }
