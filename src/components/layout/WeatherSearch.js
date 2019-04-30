@@ -34,7 +34,7 @@ export default class WeatherSearch extends Component {
           });
           toggleLoading();
           const res = await getLocation(latitude, longitude);
-          console.log("navigator position", position);
+          // console.log("navigator position", position);
           if (res !== 0) {
             this.setState({
               ...this.state,

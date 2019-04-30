@@ -8,7 +8,9 @@ import { getWeather } from "./API";
 
 class App extends Component {
   state = {
-    weather: {},
+    //init marker coords
+    weather: { latitude: 12.9791198, longitude: 77.5912997 },
+    //init map coords
     viewport: {
       latitude: 12.9791198,
       longitude: 77.5912997,
