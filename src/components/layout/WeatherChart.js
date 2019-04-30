@@ -5,19 +5,19 @@ import { Chart } from "primereact/chart";
 import MediaQuery from "react-responsive";
 
 function WeatherChart({ weatherState }) {
-  let daily = null;
-  let data = null;
+  let dailyWeather = null,
+    chartData = null;
   // console.log('chart props', weather, isLoaded);
   if (weatherState.isLoaded && !weatherState.isLoading) {
-    daily = weatherState.weather.daily;
-    data = {
-      labels: daily.data.map(daily =>
+    dailyWeather = weatherState.weather.daily.data;
+    chartData = {
+      labels: dailyWeather.map(daily =>
         moment.unix(daily.time).format("ddd DD/MM")
       ),
       datasets: [
         {
           label: "Temperature High",
-          data: daily.data.map(daily =>
+          data: dailyWeather.map(daily =>
             Math.round(daily.apparentTemperatureHigh)
           ),
           fill: false,
@@ -26,12 +26,23 @@ function WeatherChart({ weatherState }) {
         },
         {
           label: "Temperature Low",
-          data: daily.data.map(daily =>
+          data: dailyWeather.map(daily =>
             Math.round(daily.apparentTemperatureLow)
           ),
           fill: false,
           backgroundColor: "#1385ae",
           borderColor: "#1385ae"
+        },
+        {
+          label: "Average",
+          data: dailyWeather.map(daily =>
+            Math.round(
+              (daily.apparentTemperatureHigh + daily.apparentTemperatureLow) / 2
+            )
+          ),
+          fill: false,
+          backgroundColor: "#e02365",
+          borderColor: "#e02365"
         }
       ]
     };
@@ -57,16 +68,16 @@ function WeatherChart({ weatherState }) {
           if (matches) {
             return (
               <div>
-                {data !== null && (
-                  <Chart type="line" data={data} width="85vw" />
+                {chartData !== null && (
+                  <Chart type="line" data={chartData} width="85vw" />
                 )}
               </div>
             );
           } else {
             return (
               <div>
-                {data !== null && (
-                  <Chart type="line" data={data} width="38vw" />
+                {chartData !== null && (
+                  <Chart type="line" data={chartData} width="38vw" />
                 )}
               </div>
             );

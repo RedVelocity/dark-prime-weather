@@ -27,16 +27,14 @@ export default class WeatherSearch extends Component {
         //     navigator.geolocation.getCurrentPosition(resolve, reject, options);
         //   }); loc= await asyncGetCurrentPosition;
         navigator.geolocation.getCurrentPosition(async position => {
-          const {
-            coords: { latitude, longitude }
-          } = position;
+          const { latitude, longitude } = position.coords;
           this.setState({
             latitude: latitude,
             longitude: longitude
           });
           toggleLoading();
           const res = await getLocation(latitude, longitude);
-          // console.log("res data getloc", res);
+          console.log("navigator position", position);
           if (res !== 0) {
             this.setState({
               ...this.state,
