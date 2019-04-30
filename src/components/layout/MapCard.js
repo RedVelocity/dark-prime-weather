@@ -1,5 +1,10 @@
 import React from "react";
-import { StaticMap, Marker } from "react-map-gl";
+import {
+  StaticMap,
+  Marker
+  // InteractiveMap,
+  // NavigationControl
+} from "react-map-gl";
 import PropTypes from "prop-types";
 import MediaQuery from "react-responsive";
 import marker from "../../assets/marker.png";
@@ -11,7 +16,7 @@ export default function MapCard({ weatherState, setViewport }) {
         {matches => {
           if (matches) {
             return (
-              // <ReactMapGL
+              // <InteractiveMap
               //   {...weatherState.viewport}
               //   width="85vw"
               //   height="80vh"
@@ -24,7 +29,7 @@ export default function MapCard({ weatherState, setViewport }) {
               //       onViewportChange={viewport => setViewport(viewport)}
               //     />
               //   </div>
-              // </ReactMapGL>
+              // </InteractiveMap>
               <StaticMap
                 width="85vw"
                 height="80vh"
@@ -44,7 +49,7 @@ export default function MapCard({ weatherState, setViewport }) {
             );
           } else {
             return (
-              // <ReactMapGL
+              // <InteractiveMap
               //   {...weatherState.viewport}
               //   width="70vw"
               //   height="75vh"
@@ -57,7 +62,7 @@ export default function MapCard({ weatherState, setViewport }) {
               //       onViewportChange={viewport => setViewport(viewport)}
               //     />
               //   </div>
-              // </ReactMapGL>
+              // </InteractiveMap>
               <StaticMap
                 width="70vw"
                 height="75vh"
