@@ -16,7 +16,7 @@ function WeatherChart({ weatherState }) {
       ),
       datasets: [
         {
-          label: "Temperature High",
+          label: "High",
           data: dailyWeather.map(daily =>
             Math.round(daily.apparentTemperatureHigh)
           ),
@@ -25,7 +25,7 @@ function WeatherChart({ weatherState }) {
           borderColor: "#f7a800"
         },
         {
-          label: "Temperature Low",
+          label: "Low",
           data: dailyWeather.map(daily =>
             Math.round(daily.apparentTemperatureLow)
           ),
