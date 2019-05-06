@@ -1,10 +1,13 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {
-		"git.ignoreLimitWarning": true
-	}
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "C:\\Users\\shahnkha\\Documents\\GIT Apps\\dark-sky-bs4-paper"
+    }
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true
+  }
 }

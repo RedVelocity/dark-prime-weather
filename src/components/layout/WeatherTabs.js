@@ -7,11 +7,11 @@ import WeatherChart from './WeatherChart'
 
 function WeatherTabs ({ weatherState, performSearch, toggleLoading, setViewport }) {
     return (
-        <TabView className="weather-container" renderActiveOnly={false}>
+        <TabView className="tab-container" renderActiveOnly={false}>
             <TabPanel header="Weather" leftIcon="pi pi-cloud">
             <div className="weather-box">
-                <WeatherCard style={{flex: '1'}} weatherState={weatherState} performSearch={performSearch} toggleLoading={toggleLoading} />
-                <WeatherChart style={{flex: '3'}} weatherState={weatherState} />
+                <WeatherCard weatherState={weatherState} performSearch={performSearch} toggleLoading={toggleLoading} />
+                <WeatherChart weatherState={weatherState} />
             </div>
             </TabPanel>
             <TabPanel header="Map" leftIcon="pi pi-map-marker">
